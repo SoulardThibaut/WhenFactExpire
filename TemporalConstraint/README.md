@@ -1,4 +1,4 @@
-# Neuro-Symbolic Validation with Temporal Constraints (Re-used from (this github)[https://github.com/SoulardThibaut/TemporalConstraints])
+# Neuro-Symbolic Validation with Temporal Constraints (Re-used from [this github](https://github.com/SoulardThibaut/TemporalConstraints))
 
 ## Overview
 
