@@ -3,10 +3,12 @@
 This repository contains the resources and methodology for creating and using the Temporal Knowledge Graph (TKG) benchmark introduced in the paper, "When Facts Expire: Benchmarking Temporal Validity in Knowledge Graphs."
 
 This benchmark is designed to evaluate a model's ability to validate facts within a specific temporal context. Unlike traditional KG completion tasks that focus on predicting missing entities or relations, this work focuses on assessing the temporal plausibility of a given fact.
-Overview
+
+## Overview
 
 The core challenge this benchmark addresses is that the validity of many facts is time-dependent. For example, the fact (Barack Obama, HeadOfState, USA) is only true for the interval [2009-01-20, 2017-01-20]. This benchmark provides a systematic way to test a model's understanding of such temporal constraints by providing facts where only the temporal component has been intentionally corrupted.
-Creating the Benchmark Data
+
+### Creating the Benchmark Data
 
 The process of generating the benchmark involves several steps, from extracting raw data from Wikidata to generating carefully constructed negative samples.
 1. Data Extraction
@@ -68,7 +70,7 @@ To enable more sophisticated reasoning, the benchmark is enriched with:
 
     Datatype Properties: Literal values, such as a person's birthDate, which can be used to cross-validate other facts. For instance, a model could refute (Joe Biden, HasRole, US_President) for a time in the 1960s by calculating his age and finding it inconsistent with the role's requirements.
 
-## Using the Benchmark Data
+### Using the Benchmark Data
 
 The primary task for this benchmark is Temporal Fact Validation.
 Evaluation Task
