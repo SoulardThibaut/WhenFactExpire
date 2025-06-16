@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --gres=gpu:1
+
+
+# cd ..
+python3 -u main.py -d FD_D_Extra_Small -m TimePlex_base -a '{"embedding_dim":100, "srt_wt":5.0, "ort_wt":5.0, "sot_wt":5.0, "emb_reg_wt":0.005}' -l crossentropy_loss_AllNeg -r 0.1 -b 500 -x -1 -n 0 -v 1 -q 0 -y 10 -g_reg 2 -g 2.0 --perturb_time 1 --mode train --flag_add_reverse 1 -e 100 --save_dir FD_D_Extra_Small_TimePlex_base --timeout 7200 --time_precision "D"
+python3 -u main.py -d FD_D_Extra_Small -m TimePlex_base --resume_from_save "./models/FD_D_Extra_Small_TimePlex_base/best_valid_model.pt" --mode test --predict_time 1 -y 10 --save_time_results "./Res_server/FD_D_Extra_Small/TimePlex_base" --time_precision "D"
+python3 -u main.py -d FD_D_Extra_Small -m TimePlex -a '{"embedding_dim":100, "model_path":"./models/FD_D_Extra_Small_TimePlex_base/best_valid_model.pt", "pairs_wt":3.0, "pairs_args":{"reg_wt":0.002}}' -l crossentropy_loss -r 0.05 -b 500 -x -1 -n 100 -v 1 -q 0 -y 10  -g 1.0 -bt 0 --patience 1 -e 20 --save_dir FD_D_Extra_Small_TimePlex --timeout 7200 --time_precision "D"
+python3 -u main.py -d FD_D_Extra_Small -m TimePlex --resume_from_save "./models/FD_D_Extra_Small_TimePlex/best_valid_model.pt"  --mode test --predict_time 1 -y 10 --save_time_results "./Res_server/FD_D_Extra_Small/TimePlex" -bt 0 --time_precision "D"
+python3 -u main.py -d FD_D_Extra_Small -m TComplex_lx -a '{"embedding_dim":100}' -l crossentropy_loss -r 0.05 -b 500 -x -1 -n 100 -v 1 -q 0 -y 10  -g 1.0 --patience 1 -e 100 --save_dir FD_D_Extra_Small_TComplex_lx --timeout 7200 --time_precision "D"
+python3 -u main.py -d FD_D_Extra_Small -m TComplex_lx --resume_from_save "./models/FD_D_Extra_Small_TComplex_lx/best_valid_model.pt"  --mode test --predict_time 1 -y 10 --save_time_results "./Res_server/FD_D_Extra_Small/TComplex_lx" --time_precision "D"
+python3 -u main.py -d FD_D_Extra_Small -m TNTComplex_lx -a '{"embedding_dim":100}' -l crossentropy_loss -r 0.05 -b 500 -x -1 -n 100 -v 1 -q 0 -y 10  -g 1.0 --patience 1 -e 100 --save_dir FD_D_Extra_Small_TNTComplex_lx --timeout 7200 --time_precision "D"
+python3 -u main.py -d FD_D_Extra_Small -m TNTComplex_lx --resume_from_save "./models/FD_D_Extra_Small_TNTComplex_lx/best_valid_model.pt"  --mode test --predict_time 1 -y 10 --save_time_results "./Res_server/FD_D_Extra_Small/TNTComplex_lx" --time_precision "D"
+
+

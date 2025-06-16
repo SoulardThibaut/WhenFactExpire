@@ -1,0 +1,12 @@
+TR, Extra_Small, Y, 4756, 983, 517
+TR, Small, Y, 120676, 10065, 5416
+TR, Medium, Y, 231804, 13745, 7329
+TR, Extra_Small, D, 4420, 1086, 556
+TR, Small, D, 133272, 11778, 6101
+TR, Medium, D, 256804, 16604, 8790
+FD, Extra_Small, Y, 5212, 1086, 561
+FD, Small, Y, 136108, 10973, 5817
+FD, Medium, Y, 252768, 15777, 8230
+FD, Extra_Small, D, 4604, 1043, 545
+FD, Small, D, 145124, 12192, 6479
+FD, Medium, D, 282288, 18505, 9886
