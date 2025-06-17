@@ -8,15 +8,44 @@ This benchmark is designed to evaluate a model's ability to validate facts withi
 
 The core challenge this benchmark addresses is that the validity of many facts is time-dependent. For example, the fact `(Barack Obama, HeadOfState, USA)` is only true for the interval `[2009-01-20, 2017-01-20]`. This benchmark provides a systematic way to test a model's understanding of such temporal constraints by providing facts where only the temporal component has been intentionally corrupted.
 
+## Requirements
+
+**Action Required: Download the Dataset**
+
+Before you can run any scripts, you must download the project's dataset from Zenodo.
+
+1.  Navigate to the [Zenodo dataset record](https://doi.org/10.5281/zenodo.15680977).
+2.  Download the data archive.
+3.  Unzip the downloaded file. This will extract the `Processed_Data` and `Unprocessed_Data` directories.
+4.  Move both of these directories into the `DataRetrieval/Data/` folder.
+
 ## Repository Structure
 
 This repository is divided into three main parts:
 
 * **`DataRetrieval/`**: Contains all the scripts and processes for retrieving raw data from Wikidata and preparing it for the benchmark.
 * **`TKBI/`**: Contains the modified code for the Temporal Knowledge Graph Embedding approaches. This code was adapted from the original [tkbi repository](https://github.com/dair-iitd/tkbi).
-* **`TemporalConstraints/`**: Contains the code for our neuro-symbolic approach, adapted from the [TemporalConstraints repository](https://github.com/SoulardThibaut/TemporalConstraints).
+* **`TemporalConstraints/`**: Contains an example of a neuro-symbolic approach, adapted from the [TemporalConstraints repository](https://github.com/SoulardThibaut/TemporalConstraints).
 
 Each of these folders contains its own `README.md` file with more detailed instructions on prerequisites and usage.
+
+## Using the Benchmark Data
+
+The primary task for this benchmark is **Temporal Fact Validation**.
+
+### Evaluation Task
+
+Given a full quadruple `(s, p, o, τ)`, a model must predict whether the fact is plausible within the given temporal context `τ`. This is a binary classification task (true/false).
+
+### Evaluation Protocol
+
+Since many TKG models are designed for link prediction (ranking), they must be adapted for this validation task.
+
+1.  **Scoring**: Use the model's scoring function to get a plausibility score for the full input fact `(s, p, o, τ)`.
+2.  **Classification**: Apply a threshold to the score to classify the fact as temporally valid or invalid.
+3.  **Metrics**: For facts with time intervals, metrics like **Intersection over Union (IoU)** can be used to compare a model's predicted interval with the ground truth to determine correctness before applying the classification threshold.
+
+The benchmark is explicitly designed to challenge models that learn a unique embedding for each timestamp, as they may struggle with the high temporal cardinality of the Day-Month-Year settings.
 
 ## Creating the Benchmark Data
 
@@ -64,20 +93,4 @@ To enable more sophisticated reasoning, the benchmark is enriched with:
 * **Ontological Information**: Class hierarchies for logical reasoning.
 * **Datatype Properties**: Literal values, such as a person's `birthDate`, which can be used to cross-validate other facts. For instance, a model could refute `(Joe Biden, HasRole, US_President)` for a time in the 1960s by calculating his age and finding it inconsistent with the role's requirements.
 
-## Using the Benchmark Data
 
-The primary task for this benchmark is **Temporal Fact Validation**.
-
-### Evaluation Task
-
-Given a full quadruple `(s, p, o, τ)`, a model must predict whether the fact is plausible within the given temporal context `τ`. This is a binary classification task (true/false).
-
-### Evaluation Protocol
-
-Since many TKG models are designed for link prediction (ranking), they must be adapted for this validation task.
-
-1.  **Scoring**: Use the model's scoring function to get a plausibility score for the full input fact `(s, p, o, τ)`.
-2.  **Classification**: Apply a threshold to the score to classify the fact as temporally valid or invalid.
-3.  **Metrics**: For facts with time intervals, metrics like **Intersection over Union (IoU)** can be used to compare a model's predicted interval with the ground truth to determine correctness before applying the classification threshold.
-
-The benchmark is explicitly designed to challenge models that learn a unique embedding for each timestamp, as they may struggle with the high temporal cardinality of the Day-Month-Year settings.
