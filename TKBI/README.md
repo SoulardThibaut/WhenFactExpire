@@ -1,13 +1,20 @@
-# Temporal Knowledge Graph Embedding (TKBI modified code)
+# Temporal Knowledge Graph Embeddings for Validation (TKBI)
 
-This directory contains all the ressource to run the code from the article TKBI and was modified to be used in the context of the Validation Task. 
+## Overview
 
-The following model can be launched from this version : 
+This directory contains the source code for several Temporal Knowledge Graph Embedding (TKGE) models, adapted from the original [tkbi repository](https://github.com/dair-iitd/tkbi). The code has been specifically modified to perform the **temporal fact validation task** central to our benchmark, rather than the original link prediction task.
+
+## Supported Models
+
+This modified implementation supports the following TKGE models:
+
 * TimePlex_base
 * TimePlex
 * TComplex
 * TNTComplex
 
-Scripts are shown in the folder **`Scripts_server`**.
+## How to Run
 
-The results will be outputed in the folder **`Res_server`**
+1.  **Scripts**: The scripts required to train and evaluate the models are located in the `Scripts_server/` directory. You can configure and launch experiments from here.
+2.  **Results**: All evaluation results, logs, and model checkpoints will be saved to the `Res_server/` directory upon completion of the scripts.
+3.  **Visualization**: The script to visualize preliminary results can be found in the folder Visualisaiton_local. 
