@@ -14,7 +14,7 @@ The core challenge this benchmark addresses is that the validity of many facts i
 
 Before you can run any scripts, you must download the project's dataset from Zenodo.
 
-1.  Navigate to the [Zenodo dataset record](https://zenodo.org/records/15675768).
+1.  Navigate to the [Zenodo dataset record](https://doi.org/10.5281/zenodo.15680977).
 2.  Download the data archive.
 3.  Unzip the downloaded file. This will extract the `Processed_Data` and `Unprocessed_Data` directories.
 4.  Move both of these directories into the `DataRetrieval/Data/` folder.
