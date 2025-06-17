@@ -8,6 +8,17 @@ This benchmark is designed to evaluate a model's ability to validate facts withi
 
 The core challenge this benchmark addresses is that the validity of many facts is time-dependent. For example, the fact `(Barack Obama, HeadOfState, USA)` is only true for the interval `[2009-01-20, 2017-01-20]`. This benchmark provides a systematic way to test a model's understanding of such temporal constraints by providing facts where only the temporal component has been intentionally corrupted.
 
+## Requirements
+
+**Action Required: Download the Dataset**
+
+Before you can run any scripts, you must download the project's dataset from Zenodo.
+
+1.  Navigate to the [Zenodo dataset record](https://zenodo.org/records/15675768).
+2.  Download the data archive.
+3.  Unzip the downloaded file. This will extract the `Processed_Data` and `Unprocessed_Data` directories.
+4.  Move both of these directories into the `DataRetrieval/Data/` folder.
+
 ## Repository Structure
 
 This repository is divided into three main parts:
