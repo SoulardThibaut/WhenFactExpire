@@ -17,4 +17,4 @@ This modified implementation supports the following TKGE models:
 
 1.  **Scripts**: The scripts required to train and evaluate the models are located in the `Scripts_server/` directory. You can configure and launch experiments from here.
 2.  **Results**: All evaluation results, logs, and model checkpoints will be saved to the `Res_server/` directory upon completion of the scripts.
-3.  **Visualization**: The script to visualize preliminary results can be found in the folder Visualisaiton_local. 
+3.  **Visualization**: The script to visualize preliminary results can be found in the folder Visualisation_local. 
