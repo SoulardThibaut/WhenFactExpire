@@ -29,6 +29,24 @@ This repository is divided into three main parts:
 
 Each of these folders contains its own `README.md` file with more detailed instructions on prerequisites and usage.
 
+## Using the Benchmark Data
+
+The primary task for this benchmark is **Temporal Fact Validation**.
+
+### Evaluation Task
+
+Given a full quadruple `(s, p, o, τ)`, a model must predict whether the fact is plausible within the given temporal context `τ`. This is a binary classification task (true/false).
+
+### Evaluation Protocol
+
+Since many TKG models are designed for link prediction (ranking), they must be adapted for this validation task.
+
+1.  **Scoring**: Use the model's scoring function to get a plausibility score for the full input fact `(s, p, o, τ)`.
+2.  **Classification**: Apply a threshold to the score to classify the fact as temporally valid or invalid.
+3.  **Metrics**: For facts with time intervals, metrics like **Intersection over Union (IoU)** can be used to compare a model's predicted interval with the ground truth to determine correctness before applying the classification threshold.
+
+The benchmark is explicitly designed to challenge models that learn a unique embedding for each timestamp, as they may struggle with the high temporal cardinality of the Day-Month-Year settings.
+
 ## Creating the Benchmark Data
 
 The process of generating the benchmark involves several steps, from extracting raw data from Wikidata to generating carefully constructed negative samples.
@@ -75,20 +93,4 @@ To enable more sophisticated reasoning, the benchmark is enriched with:
 * **Ontological Information**: Class hierarchies for logical reasoning.
 * **Datatype Properties**: Literal values, such as a person's `birthDate`, which can be used to cross-validate other facts. For instance, a model could refute `(Joe Biden, HasRole, US_President)` for a time in the 1960s by calculating his age and finding it inconsistent with the role's requirements.
 
-## Using the Benchmark Data
 
-The primary task for this benchmark is **Temporal Fact Validation**.
-
-### Evaluation Task
-
-Given a full quadruple `(s, p, o, τ)`, a model must predict whether the fact is plausible within the given temporal context `τ`. This is a binary classification task (true/false).
-
-### Evaluation Protocol
-
-Since many TKG models are designed for link prediction (ranking), they must be adapted for this validation task.
-
-1.  **Scoring**: Use the model's scoring function to get a plausibility score for the full input fact `(s, p, o, τ)`.
-2.  **Classification**: Apply a threshold to the score to classify the fact as temporally valid or invalid.
-3.  **Metrics**: For facts with time intervals, metrics like **Intersection over Union (IoU)** can be used to compare a model's predicted interval with the ground truth to determine correctness before applying the classification threshold.
-
-The benchmark is explicitly designed to challenge models that learn a unique embedding for each timestamp, as they may struggle with the high temporal cardinality of the Day-Month-Year settings.
