@@ -25,7 +25,7 @@ This repository is divided into three main parts:
 
 * **`DataRetrieval/`**: Contains all the scripts and processes for retrieving raw data from Wikidata and preparing it for the benchmark.
 * **`TKBI/`**: Contains the modified code for the Temporal Knowledge Graph Embedding approaches. This code was adapted from the original [tkbi repository](https://github.com/dair-iitd/tkbi).
-* **`TemporalConstraints/`**: Contains the code of our neuro-symbolic approach, adapted from the [TemporalConstraints repository](https://github.com/SoulardThibaut/TemporalConstraints).
+* **`TemporalConstraints/`**: Contains an example of a neuro-symbolic approach, adapted from the [TemporalConstraints repository](https://github.com/SoulardThibaut/TemporalConstraints).
 
 Each of these folders contains its own `README.md` file with more detailed instructions on prerequisites and usage.
 
